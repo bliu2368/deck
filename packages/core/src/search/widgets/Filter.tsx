@@ -7,8 +7,8 @@ export interface IFilterProps {
   filterType: IFilterType;
   isActive: boolean;
   onClick?: (key: string) => void;
-  onKeyUp?: (event: React.KeyboardEvent<HTMLElement>) => void;
-  onMouseDown?: (event: React.MouseEvent<HTMLElement>) => void;
+  onKeyUp?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
+  onMouseDown?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export class Filter extends React.Component<IFilterProps> {
@@ -24,11 +24,11 @@ export class Filter extends React.Component<IFilterProps> {
     onClick([name, key].join('|'));
   };
 
-  private handleKeyUp = (event: React.KeyboardEvent<HTMLElement>): void => {
+  private handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>): void => {
     this.props.onKeyUp(event);
   };
 
-  private handleMouseDown = (event: React.MouseEvent<HTMLElement>): void => {
+  private handleMouseDown = (event: React.MouseEvent<HTMLDivElement>): void => {
     this.props.onMouseDown(event);
   };
 

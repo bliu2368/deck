@@ -44,7 +44,7 @@ export class Tag extends React.Component<ITagProps> {
     this.props.onBlur();
   };
 
-  private handleKeyUp = (event: React.KeyboardEvent<HTMLElement>): void => {
+  private handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>): void => {
     switch (event.key) {
       case Key.BACKSPACE:
       case Key.DELETE:

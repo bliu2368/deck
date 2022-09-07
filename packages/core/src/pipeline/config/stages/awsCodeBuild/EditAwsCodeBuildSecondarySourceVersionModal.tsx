@@ -1,4 +1,4 @@
-import type { Formik } from 'formik';
+import type { FormikProps } from 'formik';
 import { Form } from 'formik';
 import React from 'react';
 import { Modal } from 'react-bootstrap';
@@ -11,7 +11,7 @@ import type { IFormInputProps } from '../../../../presentation';
 import { FormikFormField, ReactModal, SpinFormik, TextInput } from '../../../../presentation';
 
 export class EditAwsCodeBuildSecondarySourceVersionModal extends React.Component<IEditAwsCodeBuildSourceModalProps> {
-  private formikRef = React.createRef<Formik<any>>();
+  private formikRef = React.createRef<FormikProps<any>>();
 
   private submit = (values: IAwsCodeBuildSecondarySourcesVersion): void => {
     this.props.closeModal(values);
@@ -26,7 +26,7 @@ export class EditAwsCodeBuildSecondarySourceVersionModal extends React.Component
     const { dismissModal, secondarySourcesVersionOverride } = this.props;
     return (
       <SpinFormik<IAwsCodeBuildSecondarySourcesVersion>
-        ref={this.formikRef}
+        innerRef={this.formikRef}
         initialValues={secondarySourcesVersionOverride}
         onSubmit={this.submit}
         render={(formik) => (

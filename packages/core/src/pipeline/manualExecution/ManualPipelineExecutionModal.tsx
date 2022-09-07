@@ -1,4 +1,4 @@
-import type { Formik } from 'formik';
+import type { FormikProps } from 'formik';
 import { Form } from 'formik';
 import { assign, clone, compact, extend, get, head, isArray, isEmpty, isEqual, pickBy, uniq } from 'lodash';
 import React from 'react';
@@ -63,7 +63,7 @@ export interface IManualExecutionModalState {
 const TRIGGER_FIELDS_TO_EXCLUDE = ['correlationId', 'eventId', 'executionId'];
 
 export class ManualExecutionModal extends React.Component<IManualExecutionModalProps, IManualExecutionModalState> {
-  private formikRef = React.createRef<Formik<any>>();
+  private formikRef = React.createRef<FormikProps<any>>();
   private destroy$ = new Subject();
 
   constructor(props: IManualExecutionModalProps) {
@@ -361,7 +361,7 @@ export class ManualExecutionModal extends React.Component<IManualExecutionModalP
     const pipelineCommand = this.generateInitialValues(pipeline);
     return (
       <SpinFormik<IPipelineCommand>
-        ref={this.formikRef}
+        innerRef={this.formikRef}
         initialValues={pipelineCommand}
         onSubmit={this.submit}
         validate={this.validate}

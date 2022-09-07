@@ -1,4 +1,4 @@
-import type { FieldProps, FormikContext } from 'formik';
+import type { FieldProps, FormikContextType } from 'formik';
 import { FastField, Field, FormikConsumer } from 'formik';
 import { isString, toPath } from 'lodash';
 import React from 'react';
@@ -40,13 +40,13 @@ export interface IFormikFieldProps<T> {
 }
 
 export type IFormikFormFieldProps<T> = ICommonFormFieldProps & IFormikFieldProps<T>;
-type IFormikFormFieldImplProps<T> = IFormikFormFieldProps<T> & { formik: FormikContext<T> };
+type IFormikFormFieldImplProps<T> = IFormikFormFieldProps<T> & { formik: FormikContextType<T> };
 
 const { useCallback, useContext, useState } = React;
 
 const revalidateMap = new Map();
 // If many formfields request a revalidate at the same time, coalesce the requests and revalidate once on the next tick
-function coalescedRevalidate(formik: FormikContext<any>) {
+function coalescedRevalidate(formik: FormikContextType<any>) {
   if (!revalidateMap.has(formik)) {
     revalidateMap.set(formik, true);
     setTimeout(() => {

@@ -1,4 +1,4 @@
-import type { Formik } from 'formik';
+import type { FormikProps } from 'formik';
 import { Form } from 'formik';
 import React from 'react';
 import { Modal } from 'react-bootstrap';
@@ -28,7 +28,7 @@ export class EditNotificationModal extends React.Component<IEditNotificationModa
     };
   }
 
-  private formikRef = React.createRef<Formik<any>>();
+  private formikRef = React.createRef<FormikProps<any>>();
 
   private submit = (values: INotification): void => {
     if (this.props.editNotification) {
@@ -60,7 +60,7 @@ export class EditNotificationModal extends React.Component<IEditNotificationModa
     const { dismissModal, level, notification, stageType } = this.props;
     return (
       <SpinFormik<INotification>
-        ref={this.formikRef}
+        innerRef={this.formikRef}
         initialValues={notification}
         onSubmit={this.submit}
         validate={this.validate}

@@ -45,7 +45,7 @@
     "diff-match-patch": "1.0.4",
     "dompurify": "^2.3.10",
     "enzyme": "3.11.0",
-    "formik": "1.5.1",
+    "formik": "2.2.9",
     "human-readable-ids": "1.0.4",
     "jquery": "3.5.1",
     "jquery-textcomplete": "1.6.1",

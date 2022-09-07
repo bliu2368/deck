@@ -1,4 +1,4 @@
-import type { Formik, FormikProps } from 'formik';
+import type { FormikProps } from 'formik';
 import { Form } from 'formik';
 import { merge, without } from 'lodash';
 import React from 'react';
@@ -53,7 +53,7 @@ export class WizardModal<T = {}>
   extends React.Component<IWizardModalProps<T>, IWizardModalState<T>>
   implements IWizardModalApi {
   private stepsElement = React.createRef<HTMLDivElement>();
-  private formikRef = React.createRef<Formik<any>>();
+  private formikRef = React.createRef<FormikProps<any>>();
   public state: IWizardModalState<T> = { pages: [], initialized: false, currentPage: null };
 
   private static incrementer() {
@@ -62,7 +62,7 @@ export class WizardModal<T = {}>
   }
 
   public get formik() {
-    return this.formikRef.current && (this.formikRef.current.getFormikBag() as FormikProps<T>);
+    return this.formikRef.current;
   }
 
   public componentDidMount(): void {
@@ -165,7 +165,7 @@ export class WizardModal<T = {}>
         {taskMonitor && <TaskMonitorWrapper monitor={taskMonitor} />}
 
         <SpinFormik<T>
-          ref={this.formikRef}
+          innerRef={this.formikRef}
           initialValues={initialValues}
           onSubmit={closeModal}
           validate={this.validate}

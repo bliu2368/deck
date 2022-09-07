@@ -1,13 +1,13 @@
-import type { FormikContext } from 'formik';
+import type { FormikContextType } from 'formik';
 import { connect } from 'formik';
 import type React from 'react';
 
 interface IFormikFormProps<T> {
-  render: (props: FormikContext<T>) => React.ReactElement<any>;
+  render: (props: FormikContextType<T>) => React.ReactElement<any>;
 }
 
 interface IFormikFormImplProps<T> extends IFormikFormProps<T> {
-  formik: FormikContext<T>;
+  formik: FormikContextType<T>;
 }
 
 /**

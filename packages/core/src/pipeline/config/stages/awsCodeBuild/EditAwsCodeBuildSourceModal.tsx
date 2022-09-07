@@ -1,4 +1,4 @@
-import type { Formik, FormikProps } from 'formik';
+import type { FormikProps } from 'formik';
 import { Form } from 'formik';
 import { get } from 'lodash';
 import React from 'react';
@@ -28,7 +28,7 @@ export interface IEditAwsCodeBuildSourceModalProps extends IModalComponentProps 
 }
 
 export class EditAwsCodeBuildSourceModal extends React.Component<IEditAwsCodeBuildSourceModalProps> {
-  private formikRef = React.createRef<Formik<any>>();
+  private formikRef = React.createRef<FormikProps<any>>();
 
   private submit = (values: IAwsCodeBuildSource): void => {
     this.props.closeModal(values);
@@ -73,7 +73,7 @@ export class EditAwsCodeBuildSourceModal extends React.Component<IEditAwsCodeBui
     const { dismissModal, source, stage, pipeline } = this.props;
     return (
       <SpinFormik<IAwsCodeBuildSource>
-        ref={this.formikRef}
+        innerRef={this.formikRef}
         initialValues={source}
         onSubmit={this.submit}
         validate={this.validate}

@@ -1,4 +1,3 @@
-import type { FieldProps } from 'formik';
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import { Modal } from 'react-bootstrap';
@@ -93,15 +92,11 @@ export class CancelModal extends React.Component<ICancelModalProps, ICancelModal
                   <div className="col-md-3 sm-label-right">Reason</div>
                   <div className="col-md-7">
                     <Field
+                      component={'textarea'}
                       name="reason"
-                      render={({ field }: FieldProps<ICancelModalValues>) => (
-                        <textarea
-                          className="form-control"
-                          {...field}
-                          rows={3}
-                          placeholder="(Optional) anything that might be helpful to explain the reason for this change; HTML is okay"
-                        />
-                      )}
+                      className="form-control"
+                      rows={3}
+                      placeholder="(Optional) anything that might be helpful to explain the reason for this change; HTML is okay"
                     />
                   </div>
                 </div>

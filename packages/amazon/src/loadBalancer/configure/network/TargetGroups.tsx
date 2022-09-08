@@ -18,6 +18,7 @@ import {
 
 import { isNameInUse, isNameLong } from '../common/targetGroupValidators';
 import type { IAmazonApplicationLoadBalancer, IAmazonNetworkLoadBalancerUpsertCommand } from '../../../domain';
+import type { IALBTargetGroupDescription } from '../../../domain';
 
 export interface ITargetGroupsProps {
   app: Application;
@@ -200,7 +201,7 @@ export class TargetGroups
         <div className="form-group">
           <div className="col-md-12">
             {values.targetGroups.map((targetGroup, index) => {
-              const tgErrors = (errors.targetGroups && errors.targetGroups[index]) || {};
+              const tgErrors = (errors.targetGroups?.[index] || {}) as FormikErrors<IALBTargetGroupDescription>;
               return (
                 <div key={index} className="wizard-pod">
                   <div>

@@ -16,7 +16,11 @@ import {
 } from '@spinnaker/core';
 
 import { isNameInUse, isNameLong, isValidHealthCheckInterval, isValidTimeout } from '../common/targetGroupValidators';
-import type { IAmazonApplicationLoadBalancer, IAmazonApplicationLoadBalancerUpsertCommand } from '../../../domain';
+import type {
+  IALBTargetGroupDescription,
+  IAmazonApplicationLoadBalancer,
+  IAmazonApplicationLoadBalancerUpsertCommand,
+} from '../../../domain';
 
 export interface ITargetGroupsProps {
   app: Application;
@@ -227,7 +231,17 @@ export class TargetGroups
         <div className="form-group">
           <div className="col-md-12">
             {values.targetGroups.map((targetGroup, index) => {
-              const tgErrors = (errors.targetGroups && errors.targetGroups[index]) || {};
+              const tgErrors = (errors.targetGroups?.[index] || {}) as FormikErrors<IALBTargetGroupDescription>;
+              // function getTgErrorsName(tgErrors:  string | FormikErrors<IALBTargetGroupDescription> ) {
+              //   if (typeof tgErrors != "string" ) {
+              //     return tgErrors.name
+              //   }
+              //   return tgErrors
+              // }
+              //
+              // function getTgErrorsProperty<K extends keyof IALBTargetGroupDescription>(key:K): any {
+              //
+              // }
               const has6sTimeout =
                 (targetGroup.protocol === 'TCP' || targetGroup.protocol === 'TLS') &&
                 targetGroup.healthCheckProtocol === 'HTTP';

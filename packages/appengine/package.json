@@ -19,7 +19,7 @@
     "angular-ui-bootstrap": "2.5.0",
     "classnames": "2.2.6",
     "enzyme": "3.11.0",
-    "formik": "1.5.1",
+    "formik": "2.2.9",
     "lodash": "4.17.21",
     "react": "16.14.0",
     "react2angular": "3.2.1",

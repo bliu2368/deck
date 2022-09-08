@@ -1,4 +1,4 @@
-import type { Formik, FormikErrors, FormikProps } from 'formik';
+import type { FormikErrors, FormikProps } from 'formik';
 import { Form } from 'formik';
 import { pickBy } from 'lodash';
 import React from 'react';
@@ -62,7 +62,7 @@ export class AmazonResizeServerGroupModal extends React.Component<
     dismissModal: noop,
   };
 
-  private formikRef = React.createRef<Formik<IAmazonResizeServerGroupValues>>();
+  private formikRef = React.createRef<FormikProps<IAmazonResizeServerGroupValues>>();
 
   public static show(props: IAmazonResizeServerGroupModalProps) {
     const modalProps = {};
@@ -130,7 +130,7 @@ export class AmazonResizeServerGroupModal extends React.Component<
   };
 
   private toggleAdvancedMode = (): void => {
-    const { desired } = this.formikRef.current.getFormikContext().values;
+    const { desired } = this.formikRef.current.values;
     this.formikRef.current.setFieldValue('min', desired);
     this.formikRef.current.setFieldValue('max', desired);
     this.setState({ advancedMode: !this.state.advancedMode });
@@ -145,7 +145,7 @@ export class AmazonResizeServerGroupModal extends React.Component<
       return;
     }
 
-    const formik = this.formikRef.current.getFormikContext();
+    const formik = this.formikRef.current;
     const { asg } = this.props.serverGroup;
     const { min, max, desired } = formik.values;
     const newDesired = Math.min(max, Math.max(min, asg.desiredCapacity));
@@ -398,7 +398,7 @@ export class AmazonResizeServerGroupModal extends React.Component<
       <>
         <TaskMonitorWrapper monitor={this.state.taskMonitor} />
         <SpinFormik<IAmazonResizeServerGroupValues>
-          ref={this.formikRef}
+          innerRef={this.formikRef}
           initialValues={initialValues}
           validate={this.validate}
           onSubmit={this.submit}

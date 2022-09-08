@@ -1,6 +1,6 @@
 import type { IDeferred } from 'angular';
 import type { IModalServiceInstance } from 'angular-ui-bootstrap';
-import type { Formik } from 'formik';
+import type { FormikProps } from 'formik';
 import { Form } from 'formik';
 import { $q } from 'ngimport';
 import React from 'react';
@@ -57,7 +57,7 @@ export class CloudFoundryMapLoadBalancerModal extends React.Component<
   };
 
   private destroy$ = new Subject();
-  private formikRef = React.createRef<Formik<ICloudFoundryLoadBalancerModalValues>>();
+  private formikRef = React.createRef<FormikProps<ICloudFoundryLoadBalancerModalValues>>();
   private $uibModalInstanceEmulation: IModalServiceInstance & { deferred?: IDeferred<any> };
 
   constructor(props: ICloudFoundryLoadBalancerModalProps) {
@@ -164,7 +164,7 @@ export class CloudFoundryMapLoadBalancerModal extends React.Component<
       <>
         <TaskMonitorWrapper monitor={this.state.taskMonitor} />
         <SpinFormik<ICloudFoundryLoadBalancerModalValues>
-          ref={this.formikRef}
+          innerRef={this.formikRef}
           initialValues={selectedValues}
           onSubmit={this.submit}
           render={(formik) => {

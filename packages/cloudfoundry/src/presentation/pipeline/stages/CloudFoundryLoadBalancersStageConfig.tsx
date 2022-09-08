@@ -1,4 +1,4 @@
-import type { Formik } from 'formik';
+import type { FormikProps } from 'formik';
 import React from 'react';
 import { from as observableFrom, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -29,7 +29,7 @@ export class CloudFoundryLoadBalancersStageConfig extends React.Component<
   ICloudFoundryLoadBalancersStageConfigState
 > {
   private destroy$ = new Subject();
-  private formikRef = React.createRef<Formik<ICloudFoundryLoadBalancersValues>>();
+  private formikRef = React.createRef<FormikProps<ICloudFoundryLoadBalancersValues>>();
 
   constructor(props: ICloudFoundryLoadBalancerStageConfigProps) {
     super(props);
@@ -93,7 +93,7 @@ export class CloudFoundryLoadBalancersStageConfig extends React.Component<
           <TargetSelect model={{ target }} options={StageConstants.TARGET_LIST} onChange={this.targetUpdated} />
         </StageConfigField>
         <SpinFormik<ICloudFoundryLoadBalancersValues>
-          ref={this.formikRef}
+          innerRef={this.formikRef}
           initialValues={initialValues}
           onSubmit={null}
           render={() => {

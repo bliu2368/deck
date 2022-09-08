@@ -1,4 +1,4 @@
-import type { Formik } from 'formik';
+import type { FormikProps } from 'formik';
 import { Form } from 'formik';
 import React from 'react';
 import { Modal, ModalFooter } from 'react-bootstrap';
@@ -54,7 +54,7 @@ export class CloudFoundryRollbackServerGroupModal extends React.Component<
     dismissModal: noop,
   };
 
-  private formikRef = React.createRef<Formik<ICloudFoundryRollbackServerGroupValues>>();
+  private formikRef = React.createRef<FormikProps<ICloudFoundryRollbackServerGroupValues>>();
 
   public static show(props: ICloudFoundryRollbackServerGroupModalProps): Promise<ICloudFoundryRollbackJob> {
     const modalProps = {};
@@ -109,7 +109,7 @@ export class CloudFoundryRollbackServerGroupModal extends React.Component<
       <>
         <TaskMonitorWrapper monitor={this.state.taskMonitor} />
         <SpinFormik<ICloudFoundryRollbackServerGroupValues>
-          ref={this.formikRef}
+          innerRef={this.formikRef}
           initialValues={initialValues}
           onSubmit={this.submit}
           render={(formik) => {

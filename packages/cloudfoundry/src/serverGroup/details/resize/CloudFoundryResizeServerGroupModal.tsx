@@ -1,4 +1,4 @@
-import type { Formik, FormikProps } from 'formik';
+import type { FormikProps } from 'formik';
 import { Form } from 'formik';
 import React from 'react';
 import { Modal, ModalFooter } from 'react-bootstrap';
@@ -53,7 +53,7 @@ export class CloudFoundryResizeServerGroupModal extends React.Component<
     dismissModal: noop,
   };
 
-  private formikRef = React.createRef<Formik<ICloudFoundryResizeServerGroupValues>>();
+  private formikRef = React.createRef<FormikProps<ICloudFoundryResizeServerGroupValues>>();
 
   public static show(props: ICloudFoundryResizeServerGroupModalProps): Promise<ICloudFoundryResizeJob> {
     const modalProps = {};
@@ -191,7 +191,7 @@ export class CloudFoundryResizeServerGroupModal extends React.Component<
       <>
         <TaskMonitorWrapper monitor={this.state.taskMonitor} />
         <SpinFormik<ICloudFoundryResizeServerGroupValues>
-          ref={this.formikRef}
+          innerRef={this.formikRef}
           initialValues={initialValues}
           onSubmit={this.submit}
           render={(formik) => {

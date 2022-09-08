@@ -1,4 +1,4 @@
-import type { Formik } from 'formik';
+import type { FormikProps } from 'formik';
 import { Form } from 'formik';
 import React from 'react';
 import { Modal, ModalFooter } from 'react-bootstrap';
@@ -44,7 +44,7 @@ export class CloudFoundryUnmapLoadBalancersModal extends React.Component<
     dismissModal: noop,
   };
 
-  private formikRef = React.createRef<Formik<ICloudFoundryLoadBalancerLinksModalValues>>();
+  private formikRef = React.createRef<FormikProps<ICloudFoundryLoadBalancerLinksModalValues>>();
 
   public static show(props: ICloudFoundryLoadBalancerLinksModalProps): Promise<ICloudFoundryLoadBalancerLinkJob> {
     return ReactModal.show(CloudFoundryUnmapLoadBalancersModal, props, {});
@@ -99,7 +99,7 @@ export class CloudFoundryUnmapLoadBalancersModal extends React.Component<
       <>
         <TaskMonitorWrapper monitor={this.state.taskMonitor} />
         <SpinFormik<ICloudFoundryLoadBalancerLinksModalValues>
-          ref={this.formikRef}
+          innerRef={this.formikRef}
           initialValues={initialValues}
           onSubmit={this.submit}
           render={(formik) => {

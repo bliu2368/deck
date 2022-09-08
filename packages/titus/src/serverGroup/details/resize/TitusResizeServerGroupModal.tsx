@@ -1,4 +1,4 @@
-import type { FormikContext } from 'formik';
+import type { FormikContextType } from 'formik';
 import { Form } from 'formik';
 import React from 'react';
 import { Modal } from 'react-bootstrap';
@@ -35,7 +35,7 @@ interface ITitusResizeServerGroupCommand {
   region: string;
 }
 
-function surfacedErrorMessage(formik: FormikContext<ITitusResizeServerGroupCommand>) {
+function surfacedErrorMessage(formik: FormikContextType<ITitusResizeServerGroupCommand>) {
   const capacityErrors = formik.errors.capacity || ({} as any);
   const { min, max, desired } = capacityErrors;
   return [min, max, desired].find((x) => !!x);
@@ -109,7 +109,7 @@ function SimpleMode({ formik, serverGroup, toggleMode }: IAdvancedModeProps) {
 }
 
 interface IAdvancedModeProps {
-  formik: FormikContext<ITitusResizeServerGroupCommand>;
+  formik: FormikContextType<ITitusResizeServerGroupCommand>;
   serverGroup: ITitusServerGroup;
   toggleMode: () => void;
 }
